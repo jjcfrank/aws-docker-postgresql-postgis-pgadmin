@@ -35,6 +35,7 @@ yum install docker -y
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
+
 ```bash
 sudo chmod +x /usr/local/bin/docker-compose
 ```
@@ -59,5 +60,41 @@ cd docker-compose-postgis
 ```
 10. Run the docker container
 ```bas
-docker-compose up
+docker-compose up -d
 ```
+11. Leave it running and exit the window
+
+### Viewing the docker
+
+1. Go back to the AWS main menu and then into the EC2 section.
+2. On the *Resources* box, click on the *Instances (running)* which it should have at 1 instance running.
+3. When you spot the instance, click on the *Instance ID* which will open a summary of the instance.
+4. You container's public ip address should be under *'Public IPv4 address'*.
+5. Copy and paste the public ip address into your browser.
+6. Voila. You have successfully installed PostgreSQL with PostGIS which is available via PgAdmin.
+
+### Default credentials
+
+Email Address / Username = admin@admin.com
+Password = root
+
+**You can change this and other credentials by editing the docker-compose.yml file that is inside the EC2 instance**
+
+### Setting up and accessing the docker database
+
+1. Log into PgAdmin with the credentials from above.
+2. Right click on *Servers* -> *Create* -> *Server*.
+3. In the *General* tab choose a preferred name i.e., 'myDB'.
+4.1 In the *Connection* tab type the ip address (note this is NOT the public ip address for the instance but the ip address of the docker container). To find the ip address of the docker container follow steps 1 to 3 from *'Setting up instance for deployment'* and then type
+```bash
+docker ps
+```
+4.2 A list of running containers will display - copy the *CONTAINER ID* for the database which you can identify under *NAMES*. The container ends with *'...db_1'*.
+4.3. Find the address by typing
+```bash
+docker inspect theContainerIDhere | grep IPAddress
+```
+5. Leave everything default but change user name as *docker* and password *docker*.
+
+
+
