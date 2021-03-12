@@ -96,5 +96,12 @@ docker inspect theContainerIDhere | grep IPAddress
 ```
 5. Leave everything default but change user name as *docker* and password *docker*.
 
+---
+
+## License & copyright
+
+© Frank Jimenez
+
+Licensed under the [MIT Licence](LICENSE).
 
 
