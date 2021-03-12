@@ -1,0 +1,49 @@
+version: '2.1'
+
+volumes:
+  db-backups:
+  db-data:
+  pgadmin-data:
+
+services:
+  db:
+    image: kartoza/postgis:13.0
+    volumes:
+      - db-data:/var/lib/postgresql
+    environment:
+      - POSTGRES_DB=gis
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology,postgis_raster,pgrouting
+    restart: on-failure
+    healthcheck:
+      test: "exit 0"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    volumes:
+      - pgadmin-data:/pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "80:80"
+
+  dbbackups:
+    image: kartoza/pg-backup:13.0
+    volumes:
+      - db-backups:/backups
+    environment:
+      - DUMPPREFIX=PG_gis
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+      - POSTGRES_PORT=5432
+      - STORAGE_BACKEND="FILE"
+      - DUMP_ARGS="-Fc"
+    restart: on-failure
+    depends_on:
+      db:
+        condition: service_healthy
