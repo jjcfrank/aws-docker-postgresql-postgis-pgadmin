@@ -41,6 +41,23 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```bash
 ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ```
-6. 
-
-
+6. Start docker
+```bash
+service docker start
+```
+7. Install git
+```bash
+yum install git -y
+```
+8. Git clone the docker-composer.yml
+```bash
+git clone https://github.com/jjcfrank/docker-compose-postgis.git
+```
+9. Go into the cloned folder
+```bash
+cd docker-compose-postgis
+```
+10. Run the docker container
+```bas
+docker-compose up
+```
