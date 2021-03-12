@@ -3,6 +3,8 @@ A geospatial database of New York City using AWS, Docker, PostgreSQL, PostGIS an
 
 ## Setting up AWS
 
+### Creating an EC2 instance
+
 1. Create a AWS Free Tier account - more on how to [here](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc).
 2. In AWS Management Console, go to *All services* -> *EC2*. Then go to the *Launch instance* box and click on *Launch instance*.
 3. Then, choose *Amazon Linux 2 AMI* (this name could vary slightly between regions but should always include *Amazon* and *Linux*) and choose either x86 or Arm - I chose *x86*.
