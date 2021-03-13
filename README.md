@@ -1,5 +1,5 @@
-# PostGIS live database of NYC for deployment and querrying
-A geospatial database of New York City using AWS, Docker, PostgreSQL, PostGIS and PgAdmin
+# A PostGIS database of NYC in AWS
+Creating a geospatial database of New York City using AWS, Docker, PostgreSQL, PostGIS and PgAdmin
 
 ## Setting up AWS
 
@@ -96,7 +96,8 @@ docker inspect theContainerIDhere | grep IPAddress
 ```
 5. Leave everything default but change user name as *docker* and password *docker*.
 
----
+
+
 
 ## License & copyright
 
