@@ -95,6 +95,7 @@ docker ps
 docker inspect theContainerIDhere | grep IPAddress
 ```
 5. Leave everything default but change user name as *docker* and password *docker*.
+6. Voila. The database should have connected.
 
 
 
